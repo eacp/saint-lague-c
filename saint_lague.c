@@ -1,5 +1,5 @@
 //
-// Created by dalek_cos on 18/12/2017.
+// Created by Eduardo Castillo on 17/12/2017.
 //
 
 #include "saint_lague.h"
@@ -7,7 +7,7 @@
 #define SL_FORMULA(p) ((p).votes/(2*(p).seats + 1))
 
 void sl_distribute(Party *parliament, const unsigned int n_parties, const unsigned int n_seats) {
-	unsigned int i;
+	unsigned int i; //for iteration purposes :)
 	/*
 	ALGORITHM:
 	1. Apply Hont's formula to each party

@@ -1,19 +1,20 @@
+//
+// Created by Eduardo Castillo on 17/12/2017.
+//
+
 #include <stdio.h>
 #include "data.h"
 #include "saint_lague.h"
 
 #define DEFAULT_FILE_NAME "votes.txt"
 
+//This function processes the data once it has been acquired  in the main.
 void process(Party *parliament, const unsigned int n_parties, const unsigned int available_seats,
 			 const unsigned int min_percentage){
-	unsigned int i;
+	unsigned int i; //for iteration purposes
 
 	//first, enforce minimum percentage policy if there is one (if the minimum barrier is greater than 0)
-	if(min_percentage > 0){
-		//if the votes of a party are less than required, they are like 0, they wont be taken into account
-		const unsigned int min_votes = (unsigned int)(sum_votes(parliament,n_parties)*(min_percentage/100.0f));
-		for(i = 0; i < n_parties;i++) if(parliament[i].votes < min_votes) parliament[i].votes = 0;
-	}
+	if(min_percentage > 0) enforce_min_percentage_policy(parliament,n_parties,min_percentage);
 
 	//after enforcing minimum percentage policy, distribute the votes
 	sl_distribute(parliament, n_parties, available_seats);
@@ -22,6 +23,7 @@ void process(Party *parliament, const unsigned int n_parties, const unsigned int
 	for(i = 0; i < n_parties;i++) if(parliament[i].seats != 0) PRINT_P(parliament[i]);
 }
 
+//The main acquires the data and passes it to the process function
 int main(int argv,char **argc) {
 	//get the file
 	//if a file location is provided, use that file, otherwise use the default name

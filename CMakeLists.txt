@@ -3,4 +3,4 @@ project(saint_lague C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(sl main.c data.c data.h saint_lague.c saint_lague.h)
+add_executable(saint-lague main.c data.c data.h saint_lague.c saint_lague.h)
